@@ -1,5 +1,5 @@
 name: plate-reader
 dependencies:
-- pandas=1.4
 - matplotlib
 - numpy
+- pandas=1.4
