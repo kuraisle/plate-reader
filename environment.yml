@@ -1,9 +1,0 @@
-name: streamlit
-channels:
-  - defaults
-dependencies:
-  - matplotlib=3.5.2
-  - matplotlib-base=3.5.2
-  - numpy=1.23.1
-  - numpy-base=1.23.1
-  - pandas=1.4.3
