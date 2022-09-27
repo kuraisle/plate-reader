@@ -9,7 +9,7 @@ def parse_table(df):
     final_col = data.columns[-1]
     if 'Unnamed' in final_col:
         data = data.drop(final_col, axis = 1)
-    if data.Content[0].str.contains('Time'):
+    if data.Content[0][:4] == 'Time':
         data = data.drop('Content', axis = 1)
         times = list(data.iloc[0])[1:]
         data = data.drop(0)
