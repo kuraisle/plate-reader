@@ -9,9 +9,13 @@ def parse_table(df):
     final_col = data.columns[-1]
     if 'Unnamed' in final_col:
         data = data.drop(final_col, axis = 1)
-    data = data.drop('Content', axis = 1)
-    times = list(data.iloc[0])[1:]
-    data = data.drop(0)
+    if data.Content[0].str.contains('Time'):
+        data = data.drop('Content', axis = 1)
+        times = list(data.iloc[0])[1:]
+        data = data.drop(0)
+    else:
+        data = data.drop('Content', axis = 1)
+        times = 0
     rows = data.apply(lambda x: x['Well'][0], axis = 1)
     data['Row'] = rows
     columns = data.apply(lambda x: int(x['Well'][1:]), axis = 1)
