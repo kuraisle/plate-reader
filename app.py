@@ -15,16 +15,15 @@ def parse_table(df):
         data = data.drop(0)
     else:
         data = data.drop('Content', axis = 1)
-        times = 0
+        times = [0]
     rows = data.apply(lambda x: x['Well'][0], axis = 1)
     data['Row'] = rows
     columns = data.apply(lambda x: int(x['Well'][1:]), axis = 1)
     data['Column'] = columns
     data = data.set_index(['Row', 'Column']).drop('Well', axis = 1)
-    if type(times) != int:
+    if len(times) > 1:
         data.columns = [[x.split('.')[0] for x in data.columns], times]
-        times = set(times)
-    return data, times, rows, columns
+    return data, set(times), rows, columns
 
 concentration_units = {
     'molar': 1,
