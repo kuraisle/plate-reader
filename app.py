@@ -21,8 +21,10 @@ def parse_table(df):
     columns = data.apply(lambda x: int(x['Well'][1:]), axis = 1)
     data['Column'] = columns
     data = data.set_index(['Row', 'Column']).drop('Well', axis = 1)
-    data.columns = [[x.split('.')[0] for x in data.columns], times]
-    return data, set(times), rows, columns
+    if type(times) != int:
+        data.columns = [[x.split('.')[0] for x in data.columns], times]
+        times = set(times)
+    return data, times, rows, columns
 
 concentration_units = {
     'molar': 1,
