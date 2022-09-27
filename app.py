@@ -15,7 +15,7 @@ def parse_table(df):
         data = data.drop(0)
     else:
         data = data.drop('Content', axis = 1)
-        times = [0]
+        times = [0, 0]
     rows = data.apply(lambda x: x['Well'][0], axis = 1)
     data['Row'] = rows
     columns = data.apply(lambda x: int(x['Well'][1:]), axis = 1)
